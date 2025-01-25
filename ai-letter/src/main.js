@@ -1,24 +1,48 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+let fromObject = {};
+const form = document.getElementById('form');
+console.log(form);
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+const inputFiled = document.querySelectorAll('input');
+const textArea = document.querySelectorAll('textarea');
+const submit = document.getElementById('submit');
 
-setupCounter(document.querySelector('#counter'))
+function getData() {
+  inputFiled.forEach(input => {
+    fromObject[input.id] = input.value;
+  });
+
+  textArea.forEach(area => {
+    fromObject[area.id] = area.value;
+  });
+
+  localStorage.setItem('fromObject', JSON.stringify(fromObject));
+  alert('Form data saved to local storage');
+}
+
+function insert() {
+  const storeData = localStorage.getItem('fromObject');
+  if (storeData) {
+    const parsedData = JSON.parse(storeData);
+    Object.keys(parsedData).forEach(key => {
+      const input = document.getElementById(key);
+      if (input) {
+        input.value = parsedData[key];
+      }
+    });
+  }
+}
+
+window.addEventListener('load', () => {
+  insert();
+  // localStorage.clear()
+});
+
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  getData();
+
+
+
+});
+
+
