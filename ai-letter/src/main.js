@@ -1,3 +1,8 @@
+import GoogleGenerativeAI from"@google/generative-ai"
+
+
+
+
 let fromObject = {};
 const form = document.getElementById('form');
 console.log(form);
@@ -40,9 +45,9 @@ window.addEventListener('load', () => {
 form.addEventListener('submit', (event) => {
   event.preventDefault();
   getData();
+  
 
 
 
 });
-
 
