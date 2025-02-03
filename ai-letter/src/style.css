@@ -107,3 +107,38 @@ h2 {
         padding: 14px;
     }
 }
+@media print {
+    body {
+      margin: 0;
+      padding: 0;
+    }
+  
+    .letter {
+      width: 210mm;  /* A4 width */
+      height: 297mm; /* A4 height */
+      margin: 0 auto;
+      padding: 20mm;
+      font-family: Arial, sans-serif;
+      font-size: 12pt; /* Adjust text size for readability */
+      line-height: 1.5;
+      color: black;
+      background-color: white;
+      box-sizing: border-box;  /* Ensures padding and border are accounted for */
+    }
+  
+    /* Hide non-printable content */
+    body * {
+      visibility: hidden;
+    }
+  
+    .letter, .letter * {
+      visibility: visible;
+    }
+  
+    .letter {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+  
